@@ -1,0 +1,38 @@
+spring:
+  flyway:
+    schema: demo
+    locations: "classpath:db/migration"
+    enabled: false
+  datasource:
+    url: ${JDBC_DATASOURCE_URL:jdbc:postgresql://localhost:5434/demo}
+    driverClassName: org.postgresql.Driver
+    username: ${JDBC_DATASOURCE_USERNAME:root}
+    password: ${JDBC_DATASOURCE_PASSWORD:root}
+    pool:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+    hibernate:
+      ddl-auto: update
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+
+springdoc:
+  paths-to-match:
+  packagesToScan: com.blusalt.dbxpbackgroundservice
+
+hibernate:
+
+  dialect: org.hibernate.dialect.PostgreSQLDialect
+
+
+
+
+
+allowed:
+  origins: ${ALLOWED_ORIGINS:*}
+
+

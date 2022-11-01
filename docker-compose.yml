@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+
+  background-service-db:
+    image: 'postgres:latest'
+    container_name: background-service-db
+    environment:
+       POSTGRES_USER: root
+       POSTGRES_PASSWORD: root
+       POSTGRES_DB: demo
+    ports:
+      - "5434:5432"
+
+
+
+
+  background-service:
+    image: background-service
+    container_name: background-service
+    environment:
+      JDBC_DATASOURCE_URL: jdbc:postgresql://background-service-db/demo?autoReconnect=true
+      JDBC_DATASOURCE_USERNAME: root
+      JDBC_DATASOURCE_PASSWORD: root
+    build:
+      context: ./
+      dockerfile:   Dockerfile
+    ports:
+      - "8001:8001"
+    depends_on:
+      - background-service-db
+
+
+
+

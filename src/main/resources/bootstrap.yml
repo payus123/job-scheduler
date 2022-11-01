@@ -1,0 +1,14 @@
+server:
+  port: ${PORT:8001}
+
+spring:
+  application:
+    name: background-service
+  profiles:
+    active: ${PROFILE:prod}
+
+
+logstash:
+  host: ${LOGSTASH_HOST:localhost}
+  port: ${LOGSTASH_PORT:9700}
+
